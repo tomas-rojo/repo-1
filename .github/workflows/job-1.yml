@@ -8,14 +8,19 @@ on:
         required: true
         default: "30"
         type: string
-
+      skip_job:
+        description: 'Skip this job? (yes/no)'
+        required: false
+        default: "no"
+        type: string
 jobs:
   emulate-job:
     runs-on: ubuntu-latest
+    if: ${{ inputs.skip_job != 'yes' }}  # Skip if input is "yes"
     steps:
       - name: Start job
         run: echo "Starting job..."
       - name: Sleep for specified seconds
-        run: sleep abc
+        run: sleep ${{ inputs.sleep_duration }}
       - name: Complete job
         run: echo "Job completed."
