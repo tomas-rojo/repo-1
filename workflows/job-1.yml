@@ -1,0 +1,21 @@
+name: Job Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      sleep_duration:
+        description: 'Duration to sleep (in seconds)'
+        required: true
+        default: 30
+        type: number
+
+jobs:
+  emulate-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Start job
+        run: echo "Starting job..."
+      - name: Sleep for specified seconds
+        run: sleep ${{ github.event.inputs.sleep_duration }}
+      - name: Complete job
+        run: echo "Job completed."
