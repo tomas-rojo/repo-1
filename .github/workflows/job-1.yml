@@ -6,8 +6,8 @@ on:
       sleep_duration:
         description: 'Duration to sleep (in seconds)'
         required: true
-        default: 30
-        type: number
+        default: "30"
+        type: string
 
 jobs:
   emulate-job:
@@ -16,6 +16,6 @@ jobs:
       - name: Start job
         run: echo "Starting job..."
       - name: Sleep for specified seconds
-        run: sleep ${{ github.event.inputs.sleep_duration }}
+        run: sleep abc
       - name: Complete job
         run: echo "Job completed."
